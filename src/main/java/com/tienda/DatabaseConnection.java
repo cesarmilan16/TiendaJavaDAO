@@ -10,13 +10,13 @@ public class DatabaseConnection {
     private static final String PASSWORD = "1234";
 
     public static Connection getConnection() {
-        Connection connection = null;
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Conexión exitosa a la base de datos.");
+            return connection; // Devuelve la conexión para que el llamador la use.
         } catch (SQLException e) {
             System.err.println("Error al conectar con la base de datos: " + e.getMessage());
+            return null; // Devuelve null en caso de error.
         }
-        return connection;
     }
 }
