@@ -9,14 +9,14 @@ public class DatabaseConnection {
     private static final String USER = "root";
     private static final String PASSWORD = "1234";
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
         try {
             Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Conexión exitosa a la base de datos.");
             return connection; // Devuelve la conexión para que el llamador la use.
         } catch (SQLException e) {
             System.err.println("Error al conectar con la base de datos: " + e.getMessage());
-            return null; // Devuelve null en caso de error.
+            throw e; // Lanza la excepción para que el llamador la maneje.
         }
     }
 }
